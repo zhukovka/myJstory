@@ -14,7 +14,6 @@ document.addEventListener('keydown', (e) => {
 
 import('./FetchImageStream.js')
     .then((module) => {
-        const queuingStrategy = new CountQueuingStrategy({highWaterMark: 1});
         const translitter = new Translitter();
         speech.stream
             .pipeThrough({

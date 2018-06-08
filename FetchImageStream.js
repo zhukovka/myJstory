@@ -1,7 +1,11 @@
 import * as asyncFunctions from './asyncFunctions.js';
-function wait(ms) {
+
+function wait (ms) {
     return new Promise(r => setTimeout(r, ms));
 }
+
+const queuingStrategy = new CountQueuingStrategy({highWaterMark: 1});
+
 export class FetchImageStream {
     constructor () {
         let onLoad;
@@ -18,7 +22,7 @@ export class FetchImageStream {
                 await wait(500);
                 await asyncFunctions.asyncImage(`/space-font/${chunk}.webp`, chunk).then(onLoad);
             }
-        });
+        }, queuingStrategy);
     }
 
 }
