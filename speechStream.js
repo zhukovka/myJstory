@@ -32,6 +32,7 @@ class SpeechStream {
         const recognition = this.recognition;
         return new ReadableStream({
             start (controller) {
+                controller.enqueue('kuku');
                 recognition.onresult = function (event) {
                     const last = event.results.length - 1;
                     let result = event.results[last];
