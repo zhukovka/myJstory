@@ -20,6 +20,6 @@ import('./FetchImageStream.js')
                 writable: new WritableStream(new TranslitWrite(translitter)),
                 readable: new ReadableStream(new TranslitRead(translitter))
             })
-            .pipeThrough(new module.FetchImageStream())
+            .pipeThrough(new module.FetchImageStream(`${location.origin}/myJstory/space-font`))
             .pipeTo(new WritableStream(new module.ImageDestination(slide0)));
     });
