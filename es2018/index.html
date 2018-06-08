@@ -12,13 +12,174 @@
 <body>
 <main class="flex flex-center" id="slidesContainer">
     <section class="center slide">
-        <h1>Other cool staff</h1>
+        <h1>JavaScript<span class="pink">2018</span></h1>
+        <h2>Other cool staff</h2>
     </section>
+    <section class="center slide" style="display: none">
+        <h1>Abortable fetch</h1>
+    </section>
+    <!--1-->
+    <section class="slide" style="display: none">
+        <p>Abortable fetch</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const controller = new AbortController();
+const signal = controller.signal;
+
+fetch(url, { signal }).then(response => {
+  return response.text();
+}).then(text => {
+  console.log(text);
+});
+
+setTimeout(() => controller.abort(), 5000);
+</code>
+         </pre>
+    </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Abortable fetch</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const controller = <span class="highlight">new AbortController()</span>;
+const signal = controller.signal;
+
+fetch(url, { signal }).then(response => {
+  return response.text();
+}).then(text => {
+  console.log(text);
+});
+
+setTimeout(() => controller.abort(), 5000);
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Abortable fetch</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const controller = new AbortController();
+const signal = <span class="highlight">controller.signal</span>;
+
+fetch(url, { signal }).then(response => {
+  return response.text();
+}).then(text => {
+  console.log(text);
+});
+
+setTimeout(() => controller.abort(), 5000);
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Abortable fetch</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const controller = new AbortController();
+const signal = controller.signal;
+
+fetch(url, <span class="highlight">{ signal }</span>).then(response => {
+  return response.text();
+}).then(text => {
+  console.log(text);
+});
+
+setTimeout(() => controller.abort(), 5000);
+</code>
+         </pre>
+    </section>
+    <!--5-->
+    <section class="slide" style="display: none">
+        <p>Abortable fetch</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const controller = new AbortController();
+const signal = controller.signal;
+
+fetch(url, { signal }).then(response => {
+  return response.text();
+}).then(text => {
+  console.log(text);
+});
+
+setTimeout(() => <span class="highlight">controller.abort()</span>, 5000);
+</code>
+         </pre>
+    </section>
+    <!--6-->
+    <section class="slide" style="display: none">
+        <p>One signal, many fetches</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+
+    const r1 = await fetch('/r.json', { signal });
+    const r2 = await r1.json();
+    const response = await fetch(url, { signal });
+
+    ...
+</code>
+         </pre>
+    </section>
+
+
     <section class="center slide" style="display: none">
         <h1>Dynamic imports</h1>
     </section>
+    <section class="slide" style="display: none">
+        <p>Dynamic imports</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+import('./utils.js')
+.then((utils) => {
+
+  utils.default();
+
+});
+</code>
+         </pre>
+    </section>
+    <section class="center slide" style="display: none">
+        <h1>Regular Expression Features</h1>
+    </section>
+    <section class="slide" style="display: none">
+        <p>Named Captures</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const re = /(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})/u;
+const result = re.exec('2018-06-09');
+// result.groups.year === '2018'
+// result.groups.month === '06'
+// result.groups.day === '09'
+</code>
+         </pre>
+    </section>
+    <section class="slide" style="display: none">
+        <p>Named Captures</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+// Named backreferences.
+/(?&lt;LowerCaseX&gt;x)y\k&lt;LowerCaseX&gt;/.test('xyx');  // true
+
+// String replacement.
+const re = /(?&lt;fst&gt;a)(?&lt;snd&gt;b)/;
+'ab'.replace(re, '$&lt;snd&gt;$&lt;fst&gt;');  // 'ba'
+</code>
+         </pre>
+    </section>
+    <section class="slide" style="display: none">
+        <p>Unicode Property Escapes</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+/\p{Number}/u.test('①');
+/\p{Alphabetic}/u.test('雪');
+/^\p{Math}+$/u.test('∛∞∉');
+/^\p{Script_Extensions=Hiragana}+$/u.test('ひらがな');
+</code>
+         </pre>
+    </section>
 </main>
-<!--<a href="async/index.html" id="next">Next</a>-->
 <script src="../index.js"></script>
 </body>
 </html>

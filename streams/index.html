@@ -17,6 +17,7 @@
     <section class="center slide">
         <h1>Streams</h1>
     </section>
+    <!----------------------👇-------------------------------->
     <section class="slide" style="display: none" id="slide0">
         <p>Readable / Writable streams</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
@@ -32,6 +33,71 @@ new ReadableStream({
 </code>
          </pre>
     </section>
+    <!--1-->
+    <section class="slide" style="display: none">
+        <p>Readable / Writable streams</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+new ReadableStream();
+</code>
+         </pre>
+    </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Readable / Writable streams</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+new ReadableStream({
+  start(controller) {
+    // SpeechRecognition
+    recognition.onresult = e => {<span class="highlight">controller.enqueue(e.result)</span>}
+  }
+});
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Readable / Writable streams</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+new ReadableStream({
+  start(controller) {
+    recognition.onresult = e => {controller.enqueue(e.result)}
+  },
+  <span class="highlight">cancel()</span> {
+    // This is called if the reader cancels
+  }
+});
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Readable / Writable streams</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const <span class="highlight">speech</span> = new ReadableStream({...});
+</code>
+         </pre>
+    </section>
+    <!--5-->
+    <section class="slide" style="display: none">
+        <p>Readable / Writable streams</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+    speech
+            .pipeThrough({
+                writable: new WritableStream(new TranslitWrite(translitter)),
+                readable: new ReadableStream(new TranslitRead(translitter))
+            })
+            .pipeThrough(new FetchImageStream())
+            .pipeTo(new WritableStream(new ImageDestination(slide)));
+</code>
+         </pre>
+    </section>
+
+    <!----------------------------------------------------->
     <section class="slide" style="display: none" id="slide1">
         <p>Readable with async iterators</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
@@ -127,9 +193,7 @@ const iterable = {
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js">
 new ReadableStream({
-  start(controller) {
-    recognition.onresult = e => {controller.enqueue(e.result)}
-  },
+  start(controller) {...},
   <span class="highlight">cancel()</span> {
     // This is called if the reader cancels
   }

@@ -35,7 +35,7 @@ let promiseImage = function (url) {
 };
 
 function iteratorFont (word) {
-    const re = /[a-z]/u;
+    const re = /[a-z]|[0-9]/u;
     let i = 0;
     return {
         next () {

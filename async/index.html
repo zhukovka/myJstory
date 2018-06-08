@@ -47,7 +47,7 @@ async function asyncFunction() {
          </pre>
     </section>
     <section class="slide" style="display: none" id="slide2">
-        <p>Async arrow functions</p>
+        <p>Async arrow functions demo</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code2">
 el.addEventListener('click', async e => {
@@ -61,8 +61,12 @@ el.addEventListener('click', async e => {
     <section class="center slide" style="display: none">
         <h1>Generators / Iterators</h1>
     </section>
+    <section class="center slide" style="display: none">
+        <h1>Iterators</h1>
+    </section>
+    <!--1-->
     <section class="slide" style="display: none" id="slide3">
-        <p>Iterators</p>
+        <p>Iterators demo</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code3">
 {
@@ -78,11 +82,91 @@ el.addEventListener('click', async e => {
          </pre>
         <input type="text" id="iteratorInput">
     </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    <span class="highlight">next ()</span> {
+        return {value: fetch(`${char}.webp`),
+                done: !char};
+    },
+    [Symbol.iterator] () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    next () {
+        return {<span class="highlight">value: fetch(`${char}.webp`</span>),
+                done: !char};
+    },
+    [Symbol.iterator] () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    next () {
+        return {value: fetch(`${char}.webp`),
+                done: !char};
+    },
+    <span class="highlight">[Symbol.iterator]</span> () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--5-->
+    <section class="slide" style="display: none">
+        <p>Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const <span class="highlight">promiseIterator</span> = (word) =>
+({
+    next () {...},
+    [Symbol.iterator] () {...}
+})
+</code>
+         </pre>
+    </section>
+    <!--6-->
+    <section class="slide" style="display: none">
+        <p>Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+for (const result of promiseIterator('hello')){
+    result.then(...)
+}
+</code>
+         </pre>
+    </section>
+
+    <section class="center slide" style="display: none">
+        <h1>Generators</h1>
+    </section>
+    <!--1-->
     <section class="slide" style="display: none" id="slide4">
-        <p>Generators</p>
+        <p>Generators demo</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code4">
-function* generator (word) {
+function* promiseGenerator (word) {
     for (const char of word) {
         yield fetch(`${char}.webp`);
     }
@@ -91,20 +175,62 @@ function* generator (word) {
          </pre>
         <input type="text" id="generatorInput">
     </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+function<span class="highlight">*</span> promiseGenerator (word) {
+    for (const char of word) {
+        yield fetch(`${char}.webp`);
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+function* promiseGenerator (word) {
+    for (const char of word) {
+        <span class="highlight">yield fetch(`${char}.webp`);</span>
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+for (const result of promiseGenerator('hello')){
+    //use promise result
+    result.then(...)
+}
+</code>
+         </pre>
+    </section>
+<!----------------------------------👇---------------------------------------->
     <section class="center slide" style="display: none">
-        <h1>Async</h1>
+        <h1><span class="highlight">Async</span></h1>
         <h1>Generators / Iterators</h1>
     </section>
+    <section class="center slide" style="display: none">
+        <h1><span class="highlight">Async</span></h1>
+        <h1>Iterators</h1>
+    </section>
+    <!--1-->
     <section class="slide" style="display: none" id="slide5">
-        <p>Async Iterators</p>
+        <p>Async Iterators demo</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code5">
 {
     async next () {
-        return {
-            value: await asyncImage(`../space-font/${c}.webp`),
-            done: !char
-        };
+        const value = await fetch(`${c}.webp`)
+        return {value, done: !char};
     },
     [Symbol.asyncIterator] () {
         return this;
@@ -114,18 +240,136 @@ function* generator (word) {
          </pre>
         <input type="text" id="asyncIteratorInput">
     </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Async Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    <span class="highlight">async next</span> () {
+        const value = await fetch(`${c}.webp`)
+        return {value, done: !char};
+    },
+    [Symbol.asyncIterator] () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Async Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    async next () {
+        const value = <span class="highlight">await fetch</span>(`${c}.webp`)
+        return {value, done: !char};
+    },
+    [Symbol.asyncIterator] () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Async Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+{
+    async next () {
+        const value = await fetch(`${c}.webp`)
+        return {value, done: !char};
+    },
+    <span class="highlight">[Symbol.asyncIterator]</span> () {
+        return this;
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--5-->
+    <section class="slide" style="display: none">
+        <p>Async Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+const <span class="highlight">asyncIterator</span> = (word) => ({
+    async next () {...},
+    [Symbol.asyncIterator] () {...}
+})
+</code>
+         </pre>
+    </section>
+    <!--6-->
+    <section class="slide" style="display: none">
+        <p>Async Iterators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+<span class="highlight">for await</span> (const result of asyncIterator('hello')) {
+    //use result
+}
+</code>
+         </pre>
+    </section>
+
+<!------------------------------------👇------------------------->
+    <section class="center slide" style="display: none">
+        <h1><span class="highlight">Async</span></h1>
+        <h1>Generators</h1>
+    </section>
+    <!--1-->
     <section class="slide" style="display: none" id="slide6">
         <p>Async Generators</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code6">
 async function* asyncGenerator (word) {
     for (const char of word) {
-        yield await asyncImage(`${char}.webp`);
+        yield await fetch(`${char}.webp`);
     }
 }
 </code>
          </pre>
         <input type="text" id="asyncGeneratorInput">
+    </section>
+    <!--2-->
+    <section class="slide" style="display: none">
+        <p>Async Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+<span class="highlight">async</span> function* asyncGenerator (word) {
+    for (const char of word) {
+        yield await fetch(`${char}.webp`);
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--3-->
+    <section class="slide" style="display: none">
+        <p>Async Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+async function* asyncGenerator (word) {
+    for (const char of word) {
+        <span class="highlight">yield await</span> fetch(`${char}.webp`);
+    }
+}
+</code>
+         </pre>
+    </section>
+    <!--4-->
+    <section class="slide" style="display: none">
+        <p>Async Generators</p>
+        <pre class="codeSample flex flex-center" style="width: 100%">
+<code class="hljs js">
+<span class="highlight">for await</span> (const res of asyncGenerator('hello')) {
+    //use result
+}
+</code>
+         </pre>
     </section>
 </main>
 <a href="../streams/index.html" id="next">Next</a>
