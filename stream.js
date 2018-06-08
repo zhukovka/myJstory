@@ -13,26 +13,7 @@ function randomChars () {
     return string;
 }
 
-const stream = new ReadableStream({
-    start (controller) {
-        interval = setInterval(() => {
-            let string = randomChars();
-
-            // Add the string to the stream
-            controller.enqueue(string);
-            // console.log(string)
-        }, 1000);
-    },
-    pull (controller) {
-        // We don't really need a pull in this example
-    },
-    cancel () {
-        // This is called if the reader cancels,
-        // so we should stop generating strings
-        clearInterval(interval);
-        console.warn("stream cancelled")
-    }
-});
+//
 // button.addEventListener('click', function() {
 //     clearInterval(interval);
 //     controller.close();
@@ -82,6 +63,7 @@ function streamAsyncIterator (stream) {
         return () {
             // Release the lock if the iterator terminates.
             reader.releaseLock();
+            stream.cancel();
             return {};
         },
         // for-await calls this on whatever it's passed, so
@@ -93,8 +75,33 @@ function streamAsyncIterator (stream) {
 }
 
 async function f () {
+    let i = 0;
+    const stream = new ReadableStream({
+        start (controller) {
+            interval = setInterval(() => {
+                let string = randomChars();
+
+                // Add the string to the stream
+                controller.enqueue(string);
+                // console.log(string)
+            }, 1000);
+        },
+        pull (controller) {
+            // We don't really need a pull in this example
+        },
+        cancel () {
+            // This is called if the reader cancels,
+            // so we should stop generating strings
+            clearInterval(interval);
+            console.warn("stream cancelled")
+        }
+    });
     for await (const w of streamAsyncIterator(stream)) {
-        console.log(w);
+        console.log('iterator', w);
+        if (i > 10) {
+            return;
+        }
+        i++;
     }
 }
 

@@ -1,0 +1,83 @@
+/*@import url('https://fonts.googleapis.com/css?family=Fjalla+One');*/
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+html {
+    font-size: 22px;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(76, 76, 26, 1) 0, #1b2f0e 0, rgba(0, 0, 0, 1) 100%);
+}
+
+h1, h2, h3, h3, h4 {
+    /*font-family: 'Fjalla One', sans-serif;*/
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+    font-size: 20vh;
+    margin: 10px 0;
+}
+
+main {
+    height: 100vh;
+}
+
+.center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.canvasContainer, .codeContainer {
+    height: 100vh;
+    position: relative;
+    overflow: hidden
+}
+
+.codeSample {
+    width: 80%;
+    font-size: 5vh;
+}
+
+.pink {
+    color: #EC0C8E;
+}
+
+.highlight {
+    background: #fff000;
+}
+
+section img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel {
+    color: white;
+    width: 100%;
+    background: url('../images/space-carousel.webp') no-repeat center 30%;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.carousel h1 {
+    background: rgba(0,0,0,0.6);
+}
