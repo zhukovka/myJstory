@@ -33,7 +33,7 @@ export class ImageDestination {
     }
 
     write (image) {
-        this.el.style.background = '#090E1C';
+        slidesContainer.style.background = '#090E1C';
         image.style.width = '10%';
         this.el.appendChild(image);
     }

@@ -22,11 +22,12 @@
         <p>Readable / Writable streams</p>
         <pre class="codeSample flex flex-center" style="width: 100%">
 <code class="hljs js" id="code0">
-new ReadableStream({
-  start(controller) {
-    recognition.onresult = e => {controller.enqueue(e.result)}
+new <b>ReadableStream</b>({
+  <span class="blue">start(controller)</span> {
+    recognition.onresult =
+        e => {controller.enqueue(e.result)}
   },
-  cancel() {
+  <span class="blue">cancel()</span> {
     // This is called if the reader cancels
   }
 });
