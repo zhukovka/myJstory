@@ -17,8 +17,7 @@ document.addEventListener('keydown', (e) => {
 import('./FetchImageStream.js')
     .then((module) => {
         const translitter = new Translitter();
-        // const folder = `/myJstory/font`;
-        const folder = `/font`;
+        const folder = `/myJstory/font`;
         speech.stream
             .pipeThrough({
                 writable: new WritableStream(new TranslitWrite(translitter)),
