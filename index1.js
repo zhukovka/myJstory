@@ -4,6 +4,8 @@ document.addEventListener('keydown', (e) => {
     console.log(e);
     switch (e.code) {
         case "Space":
+            slide0.innerHTML = '';
+            slidesContainer.style.background = '#090E1C';
             speech.start();
             break;
         case "Escape":
