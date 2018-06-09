@@ -52,7 +52,7 @@ class TranslitWrite {
 
     write (chunk) {
         console.log('write', chunk);
-        const re = /[а-я]/u;
+        const re = /[а-яё]/u;
 
         for (const char of chunk.toLowerCase()) {
             if (re.test(char)) {
