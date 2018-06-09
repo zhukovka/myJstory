@@ -27,7 +27,7 @@ const translit = {
     'ш': "sh",
     'щ': "shch",
     'ы': "y",
-    'ь': "1",
+    'ь': "q",
     'э': "e",
     'ю': "yu",
     'я': "ya",
@@ -37,7 +37,7 @@ class Translitter {
     // onDone = null;
 
     translit (char) {
-        const en = translit[char] || '0';
+        const en = translit[char] || ' ';
         for (const symbol of en) {
             this.onDone(symbol)
         }
@@ -55,9 +55,9 @@ class TranslitWrite {
         const re = /[а-яё]/u;
 
         for (const char of chunk.toLowerCase()) {
-            if (re.test(char)) {
-                this.translitter.translit(char);
-            }
+            this.translitter.translit(char);
+            // if (re.test(char)) {
+            // }
         }
     }
 }

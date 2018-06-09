@@ -17,11 +17,13 @@ document.addEventListener('keydown', (e) => {
 import('./FetchImageStream.js')
     .then((module) => {
         const translitter = new Translitter();
+        // const folder = `/myJstory/font`;
+        const folder = `/font`;
         speech.stream
             .pipeThrough({
                 writable: new WritableStream(new TranslitWrite(translitter)),
                 readable: new ReadableStream(new TranslitRead(translitter))
             })
-            .pipeThrough(new module.FetchImageStream(`${location.origin}/myJstory/font`))
+            .pipeThrough(new module.FetchImageStream(`${location.origin}${folder}`))
             .pipeTo(new WritableStream(new module.ImageDestination(slide0)));
     });

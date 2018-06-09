@@ -20,7 +20,11 @@ export class FetchImageStream {
             async write (chunk) {
                 console.log('fetch', chunk);
                 await wait(500);
-                await asyncFunctions.asyncImage(`${folder}/${chunk}.webp`, chunk).then(onLoad);
+                if (chunk === ' ') {
+                    onLoad(new Image());
+                } else {
+                    await asyncFunctions.asyncImage(`${folder}/${chunk}.webp`, chunk).then(onLoad);
+                }
             }
         }, queuingStrategy);
     }
